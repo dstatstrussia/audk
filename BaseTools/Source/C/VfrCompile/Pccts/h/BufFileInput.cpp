@@ -11,17 +11,14 @@
 //
 //   28-May-1998    Add virtual destructor to release buffer.
 //
-//                  Add dummy definition for ANTLRTokenType
-//                  to allow compilation without knowing
-//                  token type codes.
+//                  Remove redundant ANTLRTokenType enum definition.
+//                  ANTLRTokenType is now typedef'd in pcctscfg.h for ODR compliance.
 //
 //                  Manfred Kogler (km@cast.uni-linz.ac.at)
 //                  (1.33MR14)
 //
 //   20-Jul-1998    MR14a - Reorder initialization list for ctor.
 //
-
-enum ANTLRTokenType {TER_HATES_CPP=0, SO_DO_OTHERS=9999 };
 
 #include "pcctscfg.h"
 #include "pccts_assert.h"

@@ -307,6 +307,11 @@ void special_fopen_actions(char * s)
 # define  ZZMAXSTK (ZZSTACK_MAX_MODE * 2)
 #endif
 
+/* Define ANTLRTokenType for ODR compliance when not declared by generated code */
+#ifndef ANTLRTokenType
+typedef int ANTLRTokenType;
+#endif
+
 #ifndef DllExportPCCTS
 #define DllExportPCCTS
 #endif

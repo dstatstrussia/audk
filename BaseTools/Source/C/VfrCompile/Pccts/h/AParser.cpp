@@ -36,17 +36,11 @@
 
 PCCTS_NAMESPACE_STD
 
-/* I have to put this here due to C++ limitation
- * that you can't have a 'forward' decl for enums.
- * I hate C++!!!!!!!!!!!!!!!
- * Of course, if I could use real templates, this would go away.
+/* MR1  10-Apr-97  133MR1  Prevent use of varying sizes for the
+// MR1		  		ANTLRTokenType enum
+// MR1
+// Note: ANTLRTokenType is now typedef'd in pcctscfg.h for ODR compliance
  */
-// MR1
-// MR1  10-Apr-97  133MR1  Prevent use of varying sizes for the
-// MR1  			ANTLRTokenType enum
-// MR1
-
-enum ANTLRTokenType { TER_HATES_CPP=0, ITS_TOO_COMPLICATED=9999};	    // MR1
 
 #define ANTLR_SUPPORT_CODE
 
