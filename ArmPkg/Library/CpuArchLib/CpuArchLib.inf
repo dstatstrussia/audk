@@ -1,0 +1,69 @@
+#/** @file
+#
+#  This library installs CPU Architecture Protocol
+#
+#  Copyright (c) 2009, Apple Inc. All rights reserved.<BR>
+#  Copyright (c) 2011-2013, ARM Limited. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CpuArchLib
+  FILE_GUID                      = 47EE96CC-33FA-482B-8AD6-DD8C21AA3752
+  MODULE_TYPE                    = DXE_CORE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CpuArchLib
+
+[Sources.Common]
+  CpuDxe.c
+  CpuDxe.h
+  CpuMmuCommon.c
+  Exception.c
+  MemoryAttribute.c
+
+[Sources.AARCH64]
+  AArch64/Mmu.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  ArmLib
+  ArmMmuLib
+  BaseMemoryLib
+  CacheMaintenanceLib
+  CpuLib
+  CpuExceptionHandlerLib
+  DebugLib
+  DefaultExceptionHandlerLib
+  DxeServicesTableLib
+  HobLib
+  MemoryAllocationLib
+  UefiLib
+
+[Protocols]
+  gEfiCpuArchProtocolGuid
+  gEfiMemoryAttributeProtocolGuid
+  gHardwareInterruptProtocolGuid
+
+[Guids]
+  gEfiDebugImageInfoTableGuid
+  gArmMpCoreInfoGuid
+  gIdleLoopEventGuid
+  gEfiVectorHandoffTableGuid
+
+[Pcd.common]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdDxeNxMemoryProtectionPolicy
+
+[FeaturePcd.common]
+  gArmTokenSpaceGuid.PcdRemapUnusedMemoryNx
+
+[Depex]
+  TRUE

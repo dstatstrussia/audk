@@ -1,0 +1,32 @@
+## @file
+#  FAT Package
+#
+#  FAT 32 Driver
+#  Copyright (c) 2007 - 2014, Intel Corporation. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = FatPkg
+  PACKAGE_UNI_FILE               = FatPkg.uni
+  PACKAGE_GUID                   = 8EA68A2C-99CB-4332-85C6-DD5864EAA674
+  PACKAGE_VERSION                = 0.3
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  FatPkgExtra.uni
+
+[Guids]
+  #
+  # GUID defined in package
+  #
+  gEfiFatPkgTokenSpaceGuid = { 0xbe1f59ff, 0x65f5, 0x4b28, {0xb2, 0x8d, 0x56, 0x85, 0x36, 0x4a, 0xb1, 0xd2 } }
+
+[PcdsFeatureFlag.common]
+  ## Indicates if driver is in read-only mode.<BR><BR>
+  #   TRUE  - Restricts write operations.<BR>
+  #   FALSE - Write operations allowed. Default behavior<BR>
+  # @Prompt Disables write operations on fat filesystem.
+  gEfiFatPkgTokenSpaceGuid.PcdFatReadOnlyMode |FALSE|BOOLEAN|0x00000001

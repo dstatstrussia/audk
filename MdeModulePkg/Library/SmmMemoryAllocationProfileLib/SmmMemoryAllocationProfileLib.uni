@@ -1,0 +1,15 @@
+// /** @file
+// Instance of Memory Profile Library using the EDK II SMM Memory Profile
+// Protocol.
+//
+// Copyright (c) 2010 - 2016, Intel Corporation. All rights reserved.<BR>
+//
+// SPDX-License-Identifier: BSD-2-Clause-Patent
+//
+// **/
+
+
+#string STR_MODULE_ABSTRACT             #language en-US "Instance of Memory Profile Library using the EDK II SMM Memory Profile Protocol"
+
+#string STR_MODULE_DESCRIPTION          #language en-US "Instance of Memory Profile Library using the EDK II SMM Memory Profile Protocol."
+

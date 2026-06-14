@@ -1,0 +1,46 @@
+## @file
+# Instance of Memory Profile Library using the EDK II SMM Memory Profile
+# Protocol.
+#
+# Copyright (c) 2010 - 2018, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SmmMemoryAllocationProfileLib
+  MODULE_UNI_FILE                = SmmMemoryAllocationProfileLib.uni
+  FILE_GUID                      = DC50729F-8633-47ab-8FD3-6939688CEE4C
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  LIBRARY_CLASS                  = MemoryProfileLib|DXE_SMM_DRIVER
+  CONSTRUCTOR                    = SmmMemoryProfileLibConstructor
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  SmmMemoryProfileLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  DebugLib
+  SmmServicesTableLib
+  UefiBootServicesTableLib
+
+[Protocols]
+  gEfiSmmAccess2ProtocolGuid    ## CONSUMES
+
+[Guids]
+  gEdkiiMemoryProfileGuid       ## SOMETIMES_CONSUMES   ## GUID # Locate protocol
+  gEdkiiSmmMemoryProfileGuid    ## SOMETIMES_CONSUMES   ## GUID # Locate protocol
+
+[Depex]
+  gEfiSmmAccess2ProtocolGuid
+
