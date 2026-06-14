@@ -64,7 +64,9 @@
 #endif
 
 
+#ifndef ANTLRTokenType
 typedef int ANTLRTokenType;
+#endif
 typedef unsigned char SetWordType;
 
 typedef char ANTLRChar;
