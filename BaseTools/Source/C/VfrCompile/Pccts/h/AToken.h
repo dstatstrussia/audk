@@ -31,6 +31,7 @@
 #define ATOKEN_H_GATE
 
 #include "pcctscfg.h"
+#include "VfrTokens.h"
 
 #include "pccts_string.h"
 #include "pccts_stdio.h"
