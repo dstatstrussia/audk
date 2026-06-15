@@ -308,8 +308,11 @@ void special_fopen_actions(char * s)
 #endif
 
 /* Define ANTLRTokenType for ODR compliance when not declared by generated code */
-#ifndef ANTLRTokenType
+#ifndef ANTLRTokenType_defined
+#define ANTLRTokenType_defined
+#ifndef __cplusplus
 typedef int ANTLRTokenType;
+#endif
 #endif
 
 #ifndef DllExportPCCTS

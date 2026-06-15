@@ -284,7 +284,7 @@ genDefFile( )
 	{
 		int first=1;
 
-		if ( GenCC ) fprintf(DefFile, "enum ANTLRTokenType {\n");
+		if ( GenCC ) { fprintf(DefFile, "enum ANTLRTokenType {\n"); }
 		for (i=1; i<TokenNum; i++)
 		{
 			/* Don't do EpToken or expr w/o labels */
@@ -333,10 +333,10 @@ genDefFile( )
 /* MR1  10-Apr-97 133MR1	Prevent use of varying sizes of integer	    */
 /* MR1				for the enum ANTLRTokenType                             */
 /* MR1								           */
-		if ( GenCC ) {				                                 /* MR1 */
- 		 	 if ( !first ) fprintf(DefFile, ",\n");                  /* MR14 */
-		     fprintf(DefFile, "\tDLGminToken=0");                 /* MR1 */
-		     fprintf(DefFile, ",\n\tDLGmaxToken=9999};\n");          /* MR1 */
+if ( GenCC ) {				                                 /* MR1 */
+		 	 if ( !first ) fprintf(DefFile, ",\n");                  /* MR14 */
+		    fprintf(DefFile, "\tDLGminToken=0");                 /* MR1 */
+		    fprintf(DefFile, ",\n\tDLGmaxToken=9999};\n");       /* MR1 */
                 };						                             /* MR1 */
 	}
 
