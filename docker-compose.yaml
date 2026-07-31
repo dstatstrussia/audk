@@ -30,14 +30,14 @@ services:
     entrypoint:
       - /bin/bash
       - -c
-      - "{ . ~/.edk2_rc.sh && eval \"$$(/usr/bin/curl -LfsS https://raw.githubusercontent.com/acidanthera/ocbuild/master/ci-bootstrap.sh)\" && ./build_oc.tool ; } || exit 1"
+      - "{ . ~/.edk2_rc.sh && eval \"$$(/usr/bin/curl -LfsS https://raw.githubusercontent.com/dstatstrussia/ocbuild/master/ci-bootstrap.sh)\" && ./build_oc.tool ; } || exit 1"
   build-duet:
     extends:
       service: dev-edk2
     entrypoint:
       - /bin/bash
       - -c
-      - "{ . ~/.edk2_rc.sh && eval \"$$(/usr/bin/curl -LfsS https://raw.githubusercontent.com/acidanthera/ocbuild/master/ci-bootstrap.sh)\" && ./build_duet.tool ; } || exit 1"
+      - "{ . ~/.edk2_rc.sh && eval \"$$(/usr/bin/curl -LfsS https://raw.githubusercontent.com/dstatstrussia/ocbuild/master/ci-bootstrap.sh)\" && ./build_duet.tool ; } || exit 1"
   build-docs:
     extends:
       service: dev-docs
@@ -54,4 +54,4 @@ services:
     entrypoint:
       - /bin/bash
       - -c
-      - "{ . ~/.edk2_rc.sh && eval \"$$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/ocbuild/master/ci-bootstrap.sh)\" && curl -o ./efibuild.sh \"https://raw.githubusercontent.com/dstatstrussia/OpenCore/master/efibuild.sh\" && chmod +x ./efibuild.sh && rm -f UDK && ln -s `pwd` UDK && git clone https://github.com/dstatstrussia/OpenCore.git UDK/OpenCorePkg --depth=1 && touch UDK.ready && . ./efibuild.sh; } || exit 1"
+      - "{ . ~/.edk2_rc.sh && eval \"$$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/dstatstrussia/ocbuild/master/ci-bootstrap.sh)\" && curl -o ./efibuild.sh \"https://raw.githubusercontent.com/dstatstrussia/OpenCore/master/efibuild.sh\" && chmod +x ./efibuild.sh && rm -f UDK && ln -s `pwd` UDK && git clone https://github.com/dstatstrussia/OpenCore.git UDK/OpenCorePkg --depth=1 && touch UDK.ready && . ./efibuild.sh; } || exit 1"

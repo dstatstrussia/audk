@@ -30,7 +30,7 @@ jobs:
 
       - name: CI Bootstrap
         run: |
-          src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/ocbuild/master/ci-bootstrap.sh) && eval "$src" || exit 1
+          src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/dstatstrussia/ocbuild/master/ci-bootstrap.sh) && eval "$src" || exit 1
           touch UDK.ready
 
       - name: Prepare efibuild.sh
@@ -130,7 +130,7 @@ jobs:
 
       - name: CI Bootstrap
         run: |
-          src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/ocbuild/master/ci-bootstrap.sh) && eval "$src" || exit 1
+          src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/dstatstrussia/ocbuild/master/ci-bootstrap.sh) && eval "$src" || exit 1
           touch UDK.ready
 
       - name: Prepare efibuild.sh
