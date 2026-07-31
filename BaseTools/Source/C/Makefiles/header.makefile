@@ -208,6 +208,8 @@ ifeq ($(AR),)
   AR = ar
   ARFLAGS = crs
 endif
+export AR
+export ARFLAGS
 
 CFLAGS += -DUEFI_IMAGE_FORMAT_SUPPORT_SOURCES=0x02
 
