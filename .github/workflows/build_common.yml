@@ -16,8 +16,9 @@ jobs:
   build-macos:
     name: macOS XCODE5
     runs-on: macos-latest
-    env:
-      JOB_TYPE: BUILD
+     env:
+       JOB_TYPE: BUILD
+       DEVELOPER_DIR: ""
     steps:
       - uses: actions/checkout@v4
         with:

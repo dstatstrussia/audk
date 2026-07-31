@@ -54,4 +54,4 @@ services:
     entrypoint:
       - /bin/bash
       - -c
-      - "{ . ~/.edk2_rc.sh && eval \"$$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/dstatstrussia/ocbuild/master/ci-bootstrap.sh)\" && curl -o ./efibuild.sh \"https://raw.githubusercontent.com/dstatstrussia/OpenCore/master/efibuild.sh\" && chmod +x ./efibuild.sh && rm -f UDK && ln -s `pwd` UDK && git clone https://github.com/dstatstrussia/OpenCore.git UDK/OpenCorePkg --depth=1 && touch UDK.ready && . ./efibuild.sh; } || exit 1"
+      - "{ . ~/.edk2_rc.sh && eval \"$$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/dstatstrussia/ocbuild/master/ci-bootstrap.sh)\" && curl -o ./efibuild.sh \"https://raw.githubusercontent.com/dstatstrussia/OpenCore/master/efibuild.sh\" && chmod +x ./efibuild.sh && rm -f UDK && ln -s `pwd` UDK && rm -rf UDK/OpenCorePkg && git clone https://github.com/dstatstrussia/OpenCore.git UDK/OpenCorePkg --depth=1 && touch UDK.ready && . ./efibuild.sh; } || exit 1"
