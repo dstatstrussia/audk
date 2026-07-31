@@ -27,13 +27,13 @@ VfrSyntax.cpp EfiVfrParser.cpp EfiVfrParser.h VfrParser.dlg VfrTokens.h: VfrSynt
 VfrLexer.cpp VfrLexer.h: VfrParser.dlg
 	dlg -C2 -i -CC -cl VfrLexer -o . VfrParser.dlg
 
-ATokenBuffer.obj: Pccts\h\ATokenBuffer.cpp
+ATokenBuffer.obj: Pccts\h\ATokenBuffer.cpp VfrTokens.h
 	$(CXX) -c $(CPPFLAGS) $(INC) $? -Fo$@
 
-DLexerBase.obj: Pccts\h\DLexerBase.cpp
+DLexerBase.obj: Pccts\h\DLexerBase.cpp VfrTokens.h
 	$(CXX) -c $(CPPFLAGS) $(INC) $? -Fo$@
 
-AParser.obj: Pccts\h\AParser.cpp
+AParser.obj: Pccts\h\AParser.cpp VfrTokens.h
 	$(CXX) -c $(CPPFLAGS) $(INC) $? -Fo$@
 
 EXTRA_CLEAN_OBJECTS = VfrParser.dlg EfiVfrParser.cpp EfiVfrParser.h \
