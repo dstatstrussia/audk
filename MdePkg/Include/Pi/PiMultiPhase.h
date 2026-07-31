@@ -20,36 +20,6 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Pi/PiStatusCode.h>
 #include <Pi/PiS3BootScript.h>
 
-#ifndef EFI_AP_PROCEDURE
-typedef VOID (EFIAPI *EFI_AP_PROCEDURE)(IN OUT VOID *Buffer);
-#endif
-#ifndef EFI_AP_PROCEDURE2
-typedef VOID (EFIAPI *EFI_AP_PROCEDURE2)(IN OUT VOID *Buffer);
-#endif
-typedef struct _EFI_MP_SERVICES_PROTOCOL EFI_MP_SERVICES_PROTOCOL;
-#ifndef EFI_MP_SERVICES_STARTUP_ALL_APS
-typedef EFI_STATUS (EFIAPI *EFI_MP_SERVICES_STARTUP_ALL_APS)(
-  IN EFI_MP_SERVICES_PROTOCOL *This,
-  IN EFI_AP_PROCEDURE  Procedure,
-  IN BOOLEAN           SingleThread,
-  IN EFI_EVENT         WaitEvent OPTIONAL,
-  IN UINTN             TimeOutInMicroSeconds,
-  IN VOID              *ProcedureArgument OPTIONAL,
-  OUT UINTN            **FailedCpuList OPTIONAL
-  );
-#endif
-#ifndef EFI_MP_SERVICES_STARTUP_THIS_AP
-typedef EFI_STATUS (EFIAPI *EFI_MP_SERVICES_STARTUP_THIS_AP)(
-  IN EFI_MP_SERVICES_PROTOCOL *This,
-  IN EFI_AP_PROCEDURE  Procedure,
-  IN UINTN             ProcessorNumber,
-  IN EFI_EVENT         WaitEvent OPTIONAL,
-  IN UINTN             TimeOutInMicroSeconds,
-  IN VOID              *ProcedureArgument OPTIONAL,
-  OUT BOOLEAN          *Finished OPTIONAL
-  );
-#endif
-
 //
 // PI Specification Version Information
 //
