@@ -19,6 +19,7 @@ import os
 import subprocess
 import multiprocessing
 import copy
+import shutil
 import sys
 __prog__        = 'NmakeSubdirs'
 __version__     = '%s Version %s' % (__prog__, '0.10 ')
@@ -139,16 +140,19 @@ def Run():
     curdir = os.path.abspath(os.curdir)
     if len(args.subdirs) == 1:
         args.jobs = 1
+    nmake_tool = shutil.which("nmake")
+    if nmake_tool:
+        os.environ["NMAKE_TOOL"] = nmake_tool
     if args.jobs == 1:
         try:
             for dir in args.subdirs:
-                RunCommand(os.path.join(curdir, dir), "nmake", args.target, stdout=sys.stdout, stderr=subprocess.STDOUT)
+                RunCommand(os.path.join(curdir, dir), nmake_tool or "nmake", args.target, stdout=sys.stdout, stderr=subprocess.STDOUT)
         except RuntimeError:
             exit(1)
     else:
         controller = ThreadControl(args.jobs)
         for dir in args.subdirs:
-            controller.addTask(RunCommand, os.path.join(curdir, dir), "nmake", args.target)
+            controller.addTask(RunCommand, os.path.join(curdir, dir), nmake_tool or "nmake", args.target)
         controller.startSchedule()
         controller.waitComplete()
         if controller.error:

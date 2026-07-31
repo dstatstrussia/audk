@@ -6,6 +6,11 @@
 #
 !INCLUDE ..\Makefiles\ms.common
 
+!IFNDEF NMAKE_TOOL
+NMAKE_TOOL = nmake
+!ENDIF
+MAKE = "$(NMAKE_TOOL)" -nologo
+
 CPPFLAGS = $(CPPFLAGS) /WX /D PCCTS_USE_NAMESPACE_STD
 APPNAME = VfrCompile
 
@@ -20,12 +25,13 @@ INC = $(INC) -I $(BASE_TOOLS_PATH)\Source\C\VfrCompile\Pccts\h
 !INCLUDE ..\Makefiles\ms.app
 
 VfrSyntax.cpp EfiVfrParser.cpp EfiVfrParser.h VfrParser.dlg VfrTokens.h: VfrSyntax.g
-	pushd . & cd Pccts & $(MAKE) & popd
-	antlr -CC -e3 -ck 3 -k 2 -fl VfrParser.dlg -ft VfrTokens.h -o . VfrSyntax.g
+	pushd Pccts\antlr && "$(NMAKE_TOOL)" /nologo /f AntlrMS.mak
+	pushd Pccts\dlg && "$(NMAKE_TOOL)" /nologo /f DlgMS.mak
+	"$(BIN_PATH)\antlr.exe" -CC -e3 -ck 3 -k 2 -fl VfrParser.dlg -ft VfrTokens.h -o . VfrSyntax.g
 #	pushd . & cd Pccts & $(MAKE) clean
 
 VfrLexer.cpp VfrLexer.h: VfrParser.dlg
-	dlg -C2 -i -CC -cl VfrLexer -o . VfrParser.dlg
+	"$(BIN_PATH)\dlg.exe" -C2 -i -CC -cl VfrLexer -o . VfrParser.dlg
 
 ATokenBuffer.obj: Pccts\h\ATokenBuffer.cpp VfrTokens.h
 	$(CXX) -c $(CPPFLAGS) $(INC) $? -Fo$@
