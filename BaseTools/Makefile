@@ -14,8 +14,9 @@ SUBDIRS = $(BASE_TOOLS_PATH)\Source\C $(BASE_TOOLS_PATH)\Source\Python $(BASE_TO
 all: c
 
 c :
-  @if defined PYTHON_COMMAND $(PYTHON_COMMAND) $(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.py  all $(BASE_TOOLS_PATH)\Source\C $(BASE_TOOLS_PATH)\ImageTool $(BASE_TOOLS_PATH)\MicroTool
-  @if not defined PYTHON_COMMAND $(PYTHON_HOME)\python.exe $(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.py  all $(BASE_TOOLS_PATH)\Source\C $(BASE_TOOLS_PATH)\ImageTool $(BASE_TOOLS_PATH)\MicroTool
+  @if defined PYTHON_COMMAND $(PYTHON_COMMAND) $(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.py  all $(BASE_TOOLS_PATH)\ImageTool $(BASE_TOOLS_PATH)\MicroTool
+  @if not defined PYTHON_COMMAND $(PYTHON_HOME)\python.exe $(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.py  all $(BASE_TOOLS_PATH)\ImageTool $(BASE_TOOLS_PATH)\MicroTool
+  -cd $(BASE_TOOLS_PATH)\Source\C && nmake all
 
 
 subdirs: $(SUBDIRS)
