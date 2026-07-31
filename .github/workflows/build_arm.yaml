@@ -35,9 +35,10 @@ jobs:
 
       - name: Prepare efibuild.sh
         run: |
-          curl -o ./efibuild.sh https://raw.githubusercontent.com/acidanthera/ocbuild/master/efibuild.sh || exit 1
+          curl -o ./efibuild.sh https://raw.githubusercontent.com/dstatstrussia/OpenCore/master/efibuild.sh || exit 1
           chmod +x ./efibuild.sh
           ln -s `pwd` UDK
+          git clone https://github.com/dstatstrussia/OpenCore.git UDK/OpenCorePkg --depth=1 || exit 1
 
       - name: Build BaseTools
         run: ./efibuild.sh
@@ -134,7 +135,7 @@ jobs:
 
       - name: Prepare efibuild.sh
         run: |
-          curl -o ./efibuild.sh https://raw.githubusercontent.com/acidanthera/ocbuild/master/efibuild.sh || exit 1
+          curl -o ./efibuild.sh https://raw.githubusercontent.com/dstatstrussia/OpenCore/master/efibuild.sh || exit 1
           chmod +x ./efibuild.sh
           ln -s `pwd` UDK
 

@@ -5,6 +5,8 @@ lint_line_endings()
   # All the files that should be excluded in either check, followed by all the files that are meant to be LF.
   cmd="find . -not -type d \\
   -not \( -path \"./.git/*\" -o -path \"./OpenCorePkg/*\" -o -path \"*/Bin/*\" \\
+    -o -path \"./docker-compose.yaml\" -o -path \"./Dockerfiles/*\" -o -path \"./.github/workflows/*.yml\" \\
+    -o -path \"./BaseTools/Source/C/*\" \\
     -o -name \"*.bin\" -o -name \"*.bmp\" -o -name \"*.cer\" -o -name \"*.pem\" -o -name \"*.png\" -o -name \"*.pyd\" \\
     -o -name \"X11IncludeHack\" \\
   \) \\
