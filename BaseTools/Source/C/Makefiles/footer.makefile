@@ -15,7 +15,7 @@ install: $(MAKEROOT)/libs-$(HOST_ARCH) $(LIBRARY)
 	$(CP) $(LIBRARY) $(MAKEROOT)/libs-$(HOST_ARCH)
 
 $(LIBRARY): $(OBJECTS)
-	$(AR) crs $@ $^
+	$(AR) $(ARFLAGS) $@ $^
 
 $(EDK2_OBJPATH)/%.o : $(EDK2_PATH)/%.c
 	@mkdir -p $(@D)

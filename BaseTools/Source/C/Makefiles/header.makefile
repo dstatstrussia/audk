@@ -199,6 +199,14 @@ ifeq ($(DARWIN),Darwin)
   CFLAGS        += -arch x86_64 -arch arm64 -mmacosx-version-min=10.9
   CPPFLAGS      += -arch x86_64 -arch arm64 -mmacosx-version-min=10.9
   EXTRA_LDFLAGS += -arch x86_64 -arch arm64 -mmacosx-version-min=10.9
+  AR = libtool
+  ARFLAGS = -static -o
+endif
+
+# Default AR tool (overridden above for Darwin)
+ifeq ($(AR),)
+  AR = ar
+  ARFLAGS = crs
 endif
 
 CFLAGS += -DUEFI_IMAGE_FORMAT_SUPPORT_SOURCES=0x02
