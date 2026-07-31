@@ -24,7 +24,9 @@ jobs:
           submodules: true
 
       - name: Add Linux Toolchain
-        run: brew tap FiloSottile/homebrew-musl-cross
+        run: |
+          brew tap FiloSottile/homebrew-musl-cross
+          brew trust Filosottile/homebrew-musl-cross || true
 
       - name: Install Linux Toolchain
         run: brew install musl-cross
@@ -48,6 +50,7 @@ jobs:
           curl -o ./efibuild.sh https://raw.githubusercontent.com/acidanthera/ocbuild/master/efibuild.sh || exit 1
           chmod +x ./efibuild.sh
           ln -s `pwd` UDK
+          git clone https://github.com/acidanthera/OpenCorePkg.git UDK/OpenCorePkg --depth=1 || exit 1
 
       - name: Build BaseTools
         run: ./efibuild.sh
@@ -174,18 +177,28 @@ jobs:
           curl -o ./efibuild.sh https://raw.githubusercontent.com/acidanthera/ocbuild/master/efibuild.sh || exit 1
           chmod +x ./efibuild.sh
           cmd <<< "mklink /D .\\UDK .\\" > /dev/null
+          git clone https://github.com/acidanthera/OpenCorePkg.git UDK/OpenCorePkg --depth=1 || exit 1
+
+      - name: Patch efibuild.sh for VS2022
+        run: |
+          sed -i "s/'VS2019'/'VS2022'/g" ./efibuild.sh
+          sed -i 's/VS2019/VS2022/g' ./efibuild.sh
+          sed -i 's/\[16.0,18.0)/[16.0,)/' ./efibuild.sh
 
       - name: Build BaseTools
         run: ./efibuild.sh
         env:
           SELFPKG: MdePkg
           SKIP_BUILD: 1
+          TOOLCHAINS: VS2022
 
       - name: Build Ext4Pkg
         run: ./efibuild.sh
         env:
           SELFPKG: Ext4Pkg
+          SELFPKG_DIR: Ext4Pkg
           ARCHS: IA32,X64
+          TOOLCHAINS: VS2022
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
 
@@ -194,7 +207,9 @@ jobs:
         run: ./efibuild.sh
         env:
           SELFPKG: FatPkg
+          SELFPKG_DIR: FatPkg
           ARCHS: IA32,X64
+          TOOLCHAINS: VS2022
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
 
@@ -206,6 +221,8 @@ jobs:
           ARCHS: IA32,X64
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
+          SELFPKG_DIR: IntelFsp2Pkg
+          TOOLCHAINS: VS2022
 
       - name: Build IntelFsp2WrapperPkg
         if: always()
@@ -215,6 +232,8 @@ jobs:
           ARCHS: IA32,X64
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
+          SELFPKG_DIR: IntelFsp2WrapperPkg
+          TOOLCHAINS: VS2022
 
       - name: Build MdeModulePkg
         if: always()
@@ -224,13 +243,17 @@ jobs:
           ARCHS: IA32,X64
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
+          SELFPKG_DIR: MdeModulePkg
+          TOOLCHAINS: VS2022
 
       - name: Build MdePkg
         if: always()
         run: ./efibuild.sh
         env:
           SELFPKG: MdePkg
+          SELFPKG_DIR: MdePkg
           ARCHS: IA32,X64
+          TOOLCHAINS: VS2022
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
 
@@ -239,7 +262,9 @@ jobs:
         run: ./efibuild.sh
         env:
           SELFPKG: UefiCpuPkg
+          SELFPKG_DIR: UefiCpuPkg
           ARCHS: IA32,X64
+          TOOLCHAINS: VS2022
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
 
@@ -251,6 +276,8 @@ jobs:
           ARCHS: IA32,X64
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
+          SELFPKG_DIR: UnitTestFrameworkPkg
+          TOOLCHAINS: VS2022
 
       - name: Build NetworkPkg
         if: always()
@@ -260,6 +287,8 @@ jobs:
           ARCHS: IA32,X64
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
+          SELFPKG_DIR: NetworkPkg
+          TOOLCHAINS: VS2022
 
       - name: Build SecurityPkg
         if: always()
@@ -269,6 +298,8 @@ jobs:
           ARCHS: IA32,X64
           SKIP_TESTS: 1
           SKIP_PACKAGE: 1
+          SELFPKG_DIR: SecurityPkg
+          TOOLCHAINS: VS2022
 
   build-linux-clangpdb:
     name: Linux CLANGPDB
